@@ -58,7 +58,7 @@ console.log("¡Funciona!");
         for (i = 0, len = apiData.length; i < len; i++) {
           for (j = 0; j < apiData[i].attributes.content.attributes.values.length; j++) {
             for (h = 0; h < apiData[i].attributes.content.length; h++) {
-            var nestedData = apiData[i].attributes.content.attributes.values[j];
+            var nestedData = apiData[i].attributes.values[j];
             tableData.push({
               datetime: nestedData.datetime,
               percentage: nestedData.percentage,
