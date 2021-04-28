@@ -62,9 +62,9 @@ console.log("¡Funciona!");
               var dic2 = dic.attributes.values[h];
             //var nestedData = apiData[i].attributes.values[j];
             tableData.push({
-              datetime: nestedData.datetime,
-              percentage: nestedData.percentage,
-              value: Number(nestedData.value),
+              datetime: dic2.datetime,
+              percentage: dic2.percentage,
+              value: Number(dic2.value),
               fecha_de_ultima_actualizacion: resp.data.attributes["last-update"],
               type: apiData[i].type,
               idenergia: resp.data.attributes.content["id"],
