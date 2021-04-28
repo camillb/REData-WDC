@@ -9,16 +9,6 @@ console.log("¡Funciona!");
         id: "lastupdatedate",
         dataType: tableau.dataTypeEnum.string,
       },
-      {id: "title",
-        dataType: tableau.dataTypeEnum.string,
-      },
-      {id: "groupId",
-        dataType: tableau.dataTypeEnum.string,
-      },
-      {
-        id: "type",
-        dataType: tableau.dataTypeEnum.string,
-      },
       {
         id: "id",
         dataType: tableau.dataTypeEnum.string,
@@ -56,7 +46,7 @@ console.log("¡Funciona!");
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
-        for (i = 0, len = apiData.length; i < len; i+++) {
+        for (i = 0, len = apiData.length; i < len; i++) {
           for (j = 0; j < apiData[i].attributes.values.length; j++) {
             var nestedData = apiData[i].attributes.values[j];
             tableData.push({
@@ -64,8 +54,6 @@ console.log("¡Funciona!");
               percentage: nestedData.percentage,
               value: Number(nestedData.value),
               lastupdatedate: resp.data.attributes["last-update"],
-              title: apiData[i].title,
-              groupId: apiData[i].groupId,
               type: apiData[i].type,
               id: apiData[i].id,
             });
