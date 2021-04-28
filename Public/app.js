@@ -56,9 +56,11 @@ console.log("¡Funciona!");
         var apiData = resp.included;
         // Iterate over the JSON object
         for (i = 0, len = apiData.length; i < len; i++) {
-          for (j = 0; j < apiData[i].attributes.content.attributes.values.length; j++) {
-            for (h = 0; h < apiData[i].attributes.content.length; h++) {
-            var nestedData = apiData[i].attributes.values[j];
+          for (j = 0; j < apiData[i].attributes.content.length; j++) {
+            var dic =apiData[i].attributes.content[j];
+            for (h = 0; h < dic.attributes.values.length; h++) {
+              var dic2 = dic.attributes.values[h];
+            //var nestedData = apiData[i].attributes.values[j];
             tableData.push({
               datetime: nestedData.datetime,
               percentage: nestedData.percentage,
