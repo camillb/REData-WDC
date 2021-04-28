@@ -6,24 +6,32 @@ console.log("¡Funciona!");
   myConnector.getSchema = function (schemaCallback) {
     const cols = [
       {
-        id: "lastupdatedate",
+        id: "tipo_de_energia",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "id",
+        id: "fecha_de_última_actualizacion",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "datetime",
+        id: "energia",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "percentage",
+        id: "idenergia",
+        dataType: tableau.dataTypeEnum.string,
+      },
+      {
+        id: "Porcentaje",
         dataType: tableau.dataTypeEnum.float,
       },
       {
-        id: "value",
+        id: "Valor",
         dataType: tableau.dataTypeEnum.int,
+      },
+      {
+        id: "FechaHora",
+        dataType: tableau.dataTypeEnum.string,
       },
     ];
 
@@ -40,29 +48,32 @@ console.log("¡Funciona!");
     let tableData = [];
     var i = 0;
     var j = 0;
+    var h = 0;
 
     $.getJSON(
-      "https://apidatos.ree.es/en/datos/demanda/demanda-tiempo-real?start_date=2021-04-26T00:00&end_date=2021-04-26T23:59&time_trunc=hour&geo_trunc=electric_system&geo_limit=peninsular&geo_ids=8741",
+      "https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2021-04-27T00:00&end_date=2021-04-27T22:00&time_trunc=day",
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
         for (i = 0, len = apiData.length; i < len; i++) {
-          for (j = 0; j < apiData[i].attributes.values.length; j++) {
-            var nestedData = apiData[i].attributes.values[j];
+          for (j = 0; j < apiData[i].attributes.content.attributes.values.length; j++) {
+            for (h = 0; h < apiData[i].attributes.content.length; h++) {
+            var nestedData = apiData[i].attributes.content.attributes.values[j];
             tableData.push({
               datetime: nestedData.datetime,
               percentage: nestedData.percentage,
               value: Number(nestedData.value),
-              lastupdatedate: resp.data.attributes["last-update"],
-              type: apiData[i].type,
-              id: apiData[i].id,
+              fecha_de_última_actualizacion: resp.data.attributes["last-update"],
+              tipo_de_energia: apiData[i].tipo_de_energia,
+              idenergia: apiData[i].attributes.content.attributes.idenergia,
+              energia: apiData[i].attributes.content.attributes.energia
             });
           }    
         }
         table.appendRows(tableData);
         doneCallback();
       }
-    );
+    });
   };
 
   tableau.registerConnector(myConnector);
