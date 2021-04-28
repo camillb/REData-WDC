@@ -10,15 +10,7 @@ console.log("¡Funciona!");
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "fecha_de_ultima_actualizacion",
-        dataType: tableau.dataTypeEnum.string,
-      },
-      {
-        id: "energia",
-        dataType: tableau.dataTypeEnum.string,
-      },
-      {
-        id: "idenergia",
+        id: "id",
         dataType: tableau.dataTypeEnum.string,
       },
       {
@@ -66,9 +58,8 @@ console.log("¡Funciona!");
               percentage: dic2.percentage,
               value: Number(dic2.value),
               fecha_de_ultima_actualizacion: resp.data.attributes["last-update"],
-              type: apiData[i].type,
-              idenergia: resp.data.attributes.content["id"],
-              energia: resp.data.attributes.content.attributes["type"]
+              type: dic.type,
+              id: dic.id,
             });
           }    
         }
