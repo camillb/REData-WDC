@@ -64,6 +64,8 @@ console.log("¡Funciona!");
               percentage: nestedData.percentage,
               value: Number(nestedData.value),
               lastupdatedate: resp.data.attributes["last-update"],
+              title: apiData[i].title,
+              groupId: apiData[i].groupId,
               type: apiData[i].type,
               id: apiData[i].id,
             });
