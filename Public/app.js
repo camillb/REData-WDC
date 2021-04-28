@@ -65,8 +65,8 @@ console.log("¡Funciona!");
               value: Number(nestedData.value),
               fecha_de_ultima_actualizacion: resp.data.attributes["last-update"],
               type: apiData[i].type,
-              idenergia: apiData[i].attributes.content["id"],
-              energia: apiData[i].attributes.content.attributes["type"]
+              idenergia: resp.data.attributes.content["id"],
+              energia: resp.data.attributes.content.attributes["type"]
             });
           }    
         }
