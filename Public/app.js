@@ -6,24 +6,28 @@ console.log("¡Funciona!");
   myConnector.getSchema = function (schemaCallback) {
     const cols = [
       {
-        id: "type",
+        id: "Ultima_actualizacion",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "id",
+        id: "Tipologia",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "percentage",
+        id: "ID",
+        dataType: tableau.dataTypeEnum.string,
+      },
+      {
+        id: "FechaHora",
+        dataType: tableau.dataTypeEnum.string,
+      },
+      {
+        id: "Porcentaje",
         dataType: tableau.dataTypeEnum.float,
       },
       {
-        id: "value",
+        id: "Valor",
         dataType: tableau.dataTypeEnum.int,
-      },
-      {
-        id: "datetime",
-        dataType: tableau.dataTypeEnum.string,
       },
     ];
 
@@ -40,33 +44,29 @@ console.log("¡Funciona!");
     let tableData = [];
     var i = 0;
     var j = 0;
-    var h = 0;
 
     $.getJSON(
-      "https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2021-04-27T00:00&end_date=2021-04-27T22:00&time_trunc=day",
+      "https://apidatos.ree.es/en/datos/demanda/demanda-tiempo-real?start_date=2021-04-26T00:00&end_date=2021-04-26T23:59&time_trunc=hour&geo_trunc=electric_system&geo_limit=peninsular&geo_ids=8741",
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
         for (i = 0, len = apiData.length; i < len; i++) {
-          for (j = 0; j < apiData[i].attributes.content.length; j++) {
-            var dic =apiData[i].attributes.content[j];
-            for (h = 0; h < dic.attributes.values.length; h++) {
-              var dic2 = dic.attributes.values[h];
-            //var nestedData = apiData[i].attributes.values[j];
+          for (j = 0; j < apiData[i].attributes.values.length; j++) {
+            var nestedData = apiData[i].attributes.values[j];
             tableData.push({
-              datetime: dic2.datetime,
-              percentage: dic2.percentage,
-              value: Number(dic2.value),
-              fecha_de_ultima_actualizacion: resp.data.attributes["last-update"],
-              type: dic.type,
-              id: dic.id,
+              FechaHora: nestedData.datetime,
+              Porcentaje: nestedData.percentage,
+              Valor: Number(nestedData.value),
+              Ultima_actualizacion: resp.data.attributes["last-update"],
+              Tipologia: apiData[i].type,
+              ID: apiData[i].id,
             });
-          }    
+          }
         }
         table.appendRows(tableData);
         doneCallback();
       }
-    });
+    );
   };
 
   tableau.registerConnector(myConnector);
