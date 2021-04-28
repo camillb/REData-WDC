@@ -56,7 +56,7 @@ console.log("¡Funciona!");
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
-        for (i = 0, len = apiData.length; i < len; i++) {
+        for (i = 0, len = apiData.length; i < len; i+++) {
           for (j = 0; j < apiData[i].attributes.values.length; j++) {
             var nestedData = apiData[i].attributes.values[j];
             tableData.push({
