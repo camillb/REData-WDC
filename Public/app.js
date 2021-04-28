@@ -6,11 +6,11 @@ console.log("¡Funciona!");
   myConnector.getSchema = function (schemaCallback) {
     const cols = [
       {
-        id: "tipo_de_energia",
+        id: "type",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "fecha_de_última_actualizacion",
+        id: "fecha_de_ultima_actualizacion",
         dataType: tableau.dataTypeEnum.string,
       },
       {
@@ -22,15 +22,15 @@ console.log("¡Funciona!");
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "Porcentaje",
+        id: "percentage",
         dataType: tableau.dataTypeEnum.float,
       },
       {
-        id: "Valor",
+        id: "value",
         dataType: tableau.dataTypeEnum.int,
       },
       {
-        id: "FechaHora",
+        id: "datetime",
         dataType: tableau.dataTypeEnum.string,
       },
     ];
@@ -63,10 +63,10 @@ console.log("¡Funciona!");
               datetime: nestedData.datetime,
               percentage: nestedData.percentage,
               value: Number(nestedData.value),
-              fecha_de_última_actualizacion: resp.data.attributes["last-update"],
-              tipo_de_energia: apiData[i].tipo_de_energia,
-              idenergia: apiData[i].attributes.content.attributes.idenergia,
-              energia: apiData[i].attributes.content.attributes.energia
+              fecha_de_ultima_actualizacion: resp.data.attributes["last-update"],
+              type: apiData[i].type,
+              idenergia: apiData[i].attributes.content["id"],
+              energia: apiData[i].attributes.content.attributes["type"]
             });
           }    
         }
