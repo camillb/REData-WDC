@@ -42,7 +42,7 @@ console.log("¡Funciona!");
     var j = 0;
 
     $.getJSON(
-      "https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00:00&end_date=2019-01-31T22:00&time_trunc=day",
+      "https://apidatos.ree.es/en/datos/demanda/demanda-tiempo-real?start_date=2021-04-26T00:00&end_date=2021-04-26T23:59&time_trunc=hour&geo_trunc=electric_system&geo_limit=peninsular&geo_ids=8741",
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
@@ -57,7 +57,7 @@ console.log("¡Funciona!");
               type: apiData[i].type,
               id: apiData[i].id,
             });
-          }
+          }    
         }
         table.appendRows(tableData);
         doneCallback();
