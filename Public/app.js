@@ -6,7 +6,7 @@ console.log("¡Funciona!");
   myConnector.getSchema = function (schemaCallback) {
     const cols = [
       {
-        id: "Ultima_actualizacion",
+        id: "ID",
         dataType: tableau.dataTypeEnum.string,
       },
       {
@@ -14,20 +14,20 @@ console.log("¡Funciona!");
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "ID",
+        id: "FechaHora",
         dataType: tableau.dataTypeEnum.string,
       },
       {
-        id: "FechaHora",
-        dataType: tableau.dataTypeEnum.string,
+        id: "Valor",
+        dataType: tableau.dataTypeEnum.int,
       },
       {
         id: "Porcentaje",
         dataType: tableau.dataTypeEnum.float,
       },
       {
-        id: "Valor",
-        dataType: tableau.dataTypeEnum.int,
+        id: "Ultima_actualizacion",
+        dataType: tableau.dataTypeEnum.string,
       },
     ];
 
