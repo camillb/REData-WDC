@@ -45,8 +45,20 @@ console.log("¡Funciona!");
     var i = 0;
     var j = 0;
 
+    var startDate = new Date();
+    var endDate = new Date();
+
+    // startDate será hoy, y endDate mañana (con lo que la API solo devuelve 1 dato, el de hoy a las 00:00)
+    // Se pueden restar días para obtener días a partir de ayer
+    startDate.setDate(startDate.getDate() + 0);
+    endDate.setDate(endDate.getDate() + 1);
+
+    // Convertimos al formato YYYY-MM-DD
+    startDate = startDate.toISOString().slice(0, 10);
+    endDate = endDate.toISOString().slice(0, 10);
+
     $.getJSON(
-      "https://apidatos.ree.es/es/datos/demanda/demanda-tiempo-real?start_date=2021-04-30T00:00&end_date=2021-04-30T23:59&time_trunc=hour",
+      `https://apidatos.ree.es/es/datos/demanda/demanda-tiempo-real?start_date=${startDate}T00:00&end_date=${endDate}T23:59&time_trunc=hour`,
       function (resp) {
         var apiData = resp.included;
         // Iterate over the JSON object
